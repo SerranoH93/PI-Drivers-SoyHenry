@@ -6,7 +6,7 @@ const getDriversByName = require('../controllers/getDriversByName');
 const getTeams = require('../controllers/getTeams');
 const postDrivers = require('../controllers/postDrivers');
 
-router.get('/drivers', getDrivers);
+
 router.get('/drivers', getDriversByName);
 router.get('/drivers/teams', getTeams);
 router.get('/drivers/:id', getDriverById);

@@ -14,10 +14,10 @@ const getDriverById = async (req, res) => {
         } else {
             const { data } = await axios.get(`${API}/${driverId}`);
             const {
-                id, name, lastname, description, image, nationality, dateofbirth
+                id, name, lastname, description, image, nationality, dateofbirth, teams
             } = data;
             const driver = {
-                id, name, lastname, description, image, nationality, dateofbirth
+                id, name, lastname, description, image, nationality, dateofbirth, teams: teams ? teams.split(',').map(e => e.trim()) : []
             };
             return driver.name
                 ? res.json(driver)
