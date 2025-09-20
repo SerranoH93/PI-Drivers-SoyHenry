@@ -23,14 +23,14 @@ const getDriversByName = async (req, res) => {
         const driversFromAPI = data.filter(driver => {
             return new RegExp(searchName, 'i').test(driver.name.forename);
         })
-        const newDriversList = driversFromAPI.map(element => ({
-            id: element.id,
-            name: element.name.forename,
-            surname: element.name.surname,
-            image: element.image.url,
-            nationality: element.nationality,
-            teams: element.teams ? element.teams.split(',').map(e => e.trim()) : [], //e.trim quita espacios en blanco inicio y al final
-            description: element.description,
+        const newDriversList = driversFromAPI.map(driver => ({
+            id: driver.id,
+            name: driver.name.forename,
+            surname: driver.name.surname,
+            image: driver.image.url,
+            nationality: driver.nationality,
+            teams: driver.teams ? driver.teams.split(',').map(e => e.trim()) : [], //e.trim quita espacios en blanco inicio y al final
+            description: driver.description,
         }));
         const allDrivers = driversFromDB.concat(newDriversList);
         if (allDrivers.length > 15) {

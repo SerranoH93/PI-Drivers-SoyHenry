@@ -7,7 +7,7 @@ const getTeams = async (req, res) => {
         //* Se obtienen teams de local
         const localTeams = await Team.findAll();
 
-        if (localTeams > 0) {
+        if (localTeams < 0) {
             return localTeams;
         } else {
             const { data } = await axios.get(API);
@@ -23,7 +23,7 @@ const getTeams = async (req, res) => {
                 teamsGotten.map(team => ({ name: team }))
             );
 
-            return res.status(200).json(teamsToDB.map(team => team.name));
+            return res.status(200).json(teamsToDB);
         }      
         
     } catch (error) {

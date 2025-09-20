@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import './App.css';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import About from './components/about/About.jsx';
+import Detail from './components/detail/Detail.jsx';
+import Form from './components/form/Form.jsx';
+import Home from './components/home/Home.jsx';
+import LandingPage from './components/landingpage/LandingPage.jsx';
+import NotFound from './components/notfound/NotFound.jsx';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+    
+    const location = useLocation();
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    function logout() {
+        navigate('/');
+    }
+
+    return (
+        <div>            
+            <Routes>
+                <Route
+                    path='/'
+                    element={<LandingPage />}
+                />
+                <Route
+                    path="/home"
+                    element={<Home />}
+                />
+                <Route
+                    path="/form"
+                    element={<Form />}
+                />
+                <Route
+                    path="/about"
+                    element={<About />}
+                />
+                <Route
+                    path="/detail/:id"
+                    element={<Detail />}
+                />
+                <Route
+                    path="*"
+                    element={<NotFound />}
+                />
+            </Routes>
+        </div>
+    );
+    
 }
-
 export default App
